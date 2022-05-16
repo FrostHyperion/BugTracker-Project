@@ -1,3 +1,4 @@
+
 using BugTracker.Data;
 using BugTracker.Models;
 
@@ -14,7 +15,7 @@ public class ProjectUsersRepository : IGenricRepository<ProjectUsers>
     }
 
     public void Delete(int? id)
-    {
+    {   
         if (id is not null)
         {
             _context.Projectsusers.Remove(_context.Projectsusers.First(i => Equals(i, id)));

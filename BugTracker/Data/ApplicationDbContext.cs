@@ -25,6 +25,8 @@ namespace BugTracker.Data
 
         public virtual DbSet<TicketStatuses> ticketstatuses { get; set; } = null;
         public virtual DbSet<TicketTypes> tickettypes { get; set; } = null;
+        public virtual DbSet<Users> users { get; set; } = null;
+
 
 
     }
