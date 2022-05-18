@@ -24,8 +24,10 @@ namespace BugTracker.Models
         public virtual TicketTypes TicketTypes { get; set; }
         public virtual TicketPriorities TicketPriorities { get; set; }
         public virtual TicketStatuses TicketStatuses { get; set; }
-        public virtual Users OwnerUser { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Users? OwnerUser { get; set; }
+        public virtual Users? Users { get; set; }
+        public virtual Users? AssignedToUsers { get; set; }
+        
 
         public virtual ICollection<TicketNotifications> TicketNotifications { get; set; }
         public virtual ICollection<TicketHistories> TicketHistories { get; set; }
