@@ -43,7 +43,7 @@ public class TicketCommentsRepository : IGenricRepository<TicketComments>
         return Ticketcomments;
     }
 
-    public void save()
+    public void Save()
     {
         _context.SaveChanges();
 

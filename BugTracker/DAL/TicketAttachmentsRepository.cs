@@ -44,7 +44,7 @@ namespace BugTracker.DAL;
         return ticketAttachments;
     }
 
-        public void save()
+        public void Save()
         {
                  _context.SaveChanges();
 

@@ -44,7 +44,7 @@ public class ProjectUsersRepository : IGenricRepository<ProjectUsers>
 
     }
 
-    public void save()
+    public void Save()
     {
         _context.SaveChanges();
     }

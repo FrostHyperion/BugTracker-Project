@@ -48,7 +48,7 @@ namespace BugTracker.DAL
             return userS;
         }
 
-        public void save()
+        public void Save()
         {
             _context.SaveChanges();
         }

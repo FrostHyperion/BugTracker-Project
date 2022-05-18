@@ -50,7 +50,7 @@ public class ProjectRepository : IGenricRepository<Project>
         }
     }
 
-    public void save()
+    public void Save()
     {
         _context.SaveChanges();
     }
