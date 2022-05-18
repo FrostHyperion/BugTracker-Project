@@ -17,11 +17,23 @@
 
         public int? TicketStatusId { get; set; }
         public string? OwnerUserId { get; set; }
+        public virtual Users? OwnerUser { get; set; }
         public string? AssignedToUserId { get; set; }
+        public virtual Users? AssignedToUsers { get; set; }
         public virtual ICollection<TicketComments> TicketComments { get; set; }
         public virtual ICollection<TicketNotifications> TicketNotifications { get; set; }
         public virtual ICollection<TicketHistories> TicketHistories { get; set; }
         public virtual ICollection<TicketAttachments> TicketAttachments { get; set; }
 
+        public Tickets()
+        {
+            TicketAttachments = new HashSet<TicketAttachments>();
+            TicketComments = new HashSet<TicketComments>();
+            TicketHistories = new HashSet<TicketHistories>();
+            TicketNotifications = new HashSet<TicketNotifications>();
+
+        }
     }
+
+
 }

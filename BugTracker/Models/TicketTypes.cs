@@ -7,8 +7,7 @@
 
         public enum TicketTypeCheck
         {
-            Incident,
-            LostRequest,
+             LostRequest,
             LostResponse,
             
         }

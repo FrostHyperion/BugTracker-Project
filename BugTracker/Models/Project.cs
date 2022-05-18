@@ -8,5 +8,11 @@
         public virtual ICollection<Tickets> Tickets { get; set; }
 
         public virtual ICollection<ProjectUsers> ProjectUsers { get; set; }
+        public Project(string name)
+        {
+            Name = name;
+            Tickets = new HashSet<Tickets>();
+            ProjectUsers = new HashSet<ProjectUsers>();
+        }
     }
 }

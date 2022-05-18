@@ -5,6 +5,8 @@ namespace BugTracker.DAL;
 public class TicketNotificationsRepository : IGenricRepository<TicketNotifications>
 {
     private readonly ApplicationDbContext _context;
+
+   
     public void Create(TicketNotifications? entity)
     {
        if(entity != null) _context.ticketnotifications.Add(entity);
