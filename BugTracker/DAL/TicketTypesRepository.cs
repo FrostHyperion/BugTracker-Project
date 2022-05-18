@@ -38,7 +38,7 @@ namespace BugTracker.DAL
             return Tickettypes;
         }
 
-        public void save()
+        public void Save()
         {
             _context.SaveChanges();
         }

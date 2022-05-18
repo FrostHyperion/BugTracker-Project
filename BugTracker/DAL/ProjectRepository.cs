@@ -19,7 +19,6 @@ public class ProjectRepository : IGenricRepository<Project>
             projects=_context.Projects.Where(whereFunction).ToList();
         }
         return projects;
-
     }
 
     public Project? Get(Func<Project, bool>? firstFunction)
@@ -29,10 +28,8 @@ public class ProjectRepository : IGenricRepository<Project>
         {
             project = _context.Projects.First(firstFunction);
 
-          }  
+        }  
             return project;
-
-        
     }
     
 
@@ -50,7 +47,7 @@ public class ProjectRepository : IGenricRepository<Project>
         }
     }
 
-    public void save()
+    public void Save()
     {
         _context.SaveChanges();
     }

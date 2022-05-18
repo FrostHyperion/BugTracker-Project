@@ -37,7 +37,7 @@ public class TicketNotificationsRepository : IGenricRepository<TicketNotificatio
         return Ticketnotifications;
     }
 
-    public void save()
+    public void Save()
     {
         _context.SaveChanges();
     }

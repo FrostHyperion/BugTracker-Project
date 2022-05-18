@@ -37,7 +37,7 @@ public class TIcketsRepository : IGenricRepository<Tickets>
         return Ticket;
     }
 
-    public void save()
+    public void Save()
     {
         _context.SaveChanges();
     }
