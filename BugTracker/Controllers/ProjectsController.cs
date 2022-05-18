@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BugTracker.Data;
 using BugTracker.Models;
+using BugTracker.BLL;
 
 namespace BugTracker.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ProjectBusinessLogic projectBL;        
 
         public ProjectsController(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context;            
         }
 
         // GET: Projects
