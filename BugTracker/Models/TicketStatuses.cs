@@ -4,6 +4,10 @@
     {
         public int Id { get; set; }
         public TicketStatus Name { get; set; }
+        public TicketStatuses()
+        {
+            Tickets = new HashSet<Tickets>();
+        }
 
 
         public enum TicketStatus

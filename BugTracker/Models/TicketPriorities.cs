@@ -11,7 +11,12 @@
             Medium,
             Low
         }
+        public TicketPriorities()
+        {
+            Tickets = new HashSet<Tickets>();
+        }
         public virtual ICollection<Tickets> Tickets { get; set; }
+
 
     }
 }
