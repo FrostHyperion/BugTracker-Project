@@ -1,4 +1,5 @@
 using BugTracker.Data;
+using BugTracker.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,12 +12,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+using (var Scope = app.Services.CreateScope())
+{
+    var Services = Scope.ServiceProvider;
+    await SeedData.Initialize(Services);
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
