@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BugTracker.Data;
 using BugTracker.Models;
+using BugTracker.BLL;
+using BugTracker.DAL;
 
 namespace BugTracker.Controllers
 {
     public class ProjectsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private ProjectBusinessLogic projectBL;
+        private object _userManager;
+
+        private readonly ApplicationDbContext _context; // Remember to delete this one!!!
 
         public ProjectsController(ApplicationDbContext context)
         {
-            _context = context;
+            projectBL = new ProjectBusinessLogic(new ProjectRepository(context));
         }
 
         // GET: Projects
@@ -56,14 +61,14 @@ namespace BugTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Project project)
+        public async Task<IActionResult> Create(IFormCollection collection)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(project);
-                await _context.SaveChangesAsync();
+            
+                Project project = new Project();
+                project.Name = collection["Name"].ToString();
+                projectBL.AddProject(project);
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(project);
         }
 
