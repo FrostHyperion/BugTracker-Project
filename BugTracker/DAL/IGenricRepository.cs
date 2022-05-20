@@ -10,3 +10,4 @@ public interface IGenricRepository<T>where T : class
     void Save();
 
 }
+//getlist (p=>p.Id==id)

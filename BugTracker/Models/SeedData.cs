@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BugTracker.Models
 {
-    public class SeedData
+    public static class SeedData
     {
         public async static Task Initialize(IServiceProvider serviceProvider)
         {
