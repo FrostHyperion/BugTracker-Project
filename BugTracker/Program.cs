@@ -1,3 +1,4 @@
+using BugTracker.DAL;
 using BugTracker.Data;
 using BugTracker.Models;
 using Microsoft.AspNetCore.Identity;
@@ -5,12 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IGenricRepository<Users>, UsersRepository>();
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+<<<<<<< Updated upstream
 //
+=======
+
+>>>>>>> Stashed changes
 builder.Services.AddDefaultIdentity<Users>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();

@@ -6,3 +6,28 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="col-md-11">
+<form asp-controller ="Projects" asp-action="Index" method ="post">
+    <label>
+    <button type ="submit">Create projects</button>
+    </label>
+    
+</form>
+</div>
+<div class="col-md-12">
+    
+<form asp-controller ="Tickets" asp-action="Index" method ="post">
+    <label>
+    <button type ="submit">Tickets Dashboards</button>
+    </label>
+</form>
+</div>
+<div class="col-md-12">
+    
+<form asp-controller ="Projects" asp-action="Index" method ="post">
+    <label>
+    <button type ="submit">Assign/unassign users to/from roles</button>
+    </label>
+</form>
+</div>

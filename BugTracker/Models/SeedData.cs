@@ -71,6 +71,17 @@ namespace BugTracker.Models
                     EmailConfirmed = true,
                 };
 
+                Users guest = new Users
+                {
+                    Email = "guest@test.ca",
+                    NormalizedEmail = "GUEST@TEST.CA",
+                    UserName = "guest@test.ca",
+                    NormalizedUserName = "GUEST@TEST.CA",
+                    EmailConfirmed = true,
+                };
+
+                
+
                 var password = new PasswordHasher<Users>();
                 var hashed = password.HashPassword(seededUser, "P@ssword1");
                 seededUser.PasswordHash = hashed;
@@ -100,7 +111,13 @@ namespace BugTracker.Models
                 await userManager.CreateAsync(Admin);
                 await userManager.AddToRoleAsync(Admin, "admin");
 
+                var guestAdmin = password.HashPassword(guest, "");
+                guest.PasswordHash = guestAdmin;
+                await userManager.CreateAsync(guest);
+                await userManager.AddToRoleAsync(guest, "admin");
             }
+
+           
 
             await context.SaveChangesAsync();
         }

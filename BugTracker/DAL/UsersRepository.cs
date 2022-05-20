@@ -10,9 +10,10 @@ namespace BugTracker.DAL
         private readonly ApplicationDbContext _context;
 
 
-        public UsersRepository(UserManager<Users> context)
+        public UsersRepository(UserManager<Users> userManager, ApplicationDbContext context)
         {
-            _userManager = context;
+            _userManager = userManager;
+            _context = context;
         }
 
         public void Create(Users? entity)
