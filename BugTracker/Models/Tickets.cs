@@ -17,16 +17,16 @@ namespace BugTracker.Models
         [Required]
         public int TicketPriorityId { get; set; }
         public int TicketStatusId { get; set; }
-        public string OwnerUserId { get; set; }
-        public string AssignedToUserId { get; set; }
+        public string? OwnerUserId { get; set; }
+        public string? AssignedToUserId { get; set; }
 
         public virtual Project Project { get; set; }
-        public virtual TicketTypes TicketTypes { get; set; }
-        public virtual TicketPriorities TicketPriorities { get; set; }
-        public virtual TicketStatuses TicketStatuses { get; set; }
+        public virtual TicketTypes TicketType { get; set; }
+        public virtual TicketPriorities TicketPriority { get; set; }
+        public virtual TicketStatuses TicketStatus { get; set; }
         public virtual Users? OwnerUser { get; set; }
-        public virtual Users? Users { get; set; }
-        public virtual Users? AssignedToUsers { get; set; }
+        public virtual Users? User { get; set; }
+        public virtual Users? AssignedToUser { get; set; }
         
 
         public virtual ICollection<TicketNotifications> TicketNotifications { get; set; }

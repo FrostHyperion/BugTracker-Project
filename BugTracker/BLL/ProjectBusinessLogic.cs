@@ -16,6 +16,10 @@ namespace BugTracker.BLL
             repo.Create(project);
             repo.Save();
         }
+        public void UsersAssign()
+        {
+
+        }
 
     }
 }

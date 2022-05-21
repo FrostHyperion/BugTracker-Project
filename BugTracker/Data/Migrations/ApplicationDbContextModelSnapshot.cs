@@ -52,16 +52,13 @@ namespace BugTracker.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Projectsusers");
                 });
@@ -94,19 +91,13 @@ namespace BugTracker.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ticketsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("usersId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ticketsId");
+                    b.HasIndex("TicketId");
 
-                    b.HasIndex("usersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Ticketattachments");
                 });
@@ -131,19 +122,13 @@ namespace BugTracker.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ticketsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("usersId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ticketsId");
+                    b.HasIndex("TicketId");
 
-                    b.HasIndex("usersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("ticketcomments");
                 });
@@ -176,19 +161,13 @@ namespace BugTracker.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ticketsId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("TicketId");
 
-                    b.HasIndex("ticketsId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("tickethistories");
                 });
@@ -206,19 +185,13 @@ namespace BugTracker.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ticketsId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("TicketId");
 
-                    b.HasIndex("ticketsId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("ticketnotifications");
                 });
@@ -248,10 +221,6 @@ namespace BugTracker.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AssignedToUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AssignedToUsersId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Created")
@@ -262,13 +231,9 @@ namespace BugTracker.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OwnerUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TicketPrioritiesId")
                         .HasColumnType("int");
 
                     b.Property<int>("TicketPriorityId")
@@ -277,13 +242,7 @@ namespace BugTracker.Data.Migrations
                     b.Property<int>("TicketStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketStatusesId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TicketTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TicketTypesId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -293,24 +252,24 @@ namespace BugTracker.Data.Migrations
                     b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UsersId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssignedToUsersId");
+                    b.HasIndex("AssignedToUserId");
 
                     b.HasIndex("OwnerUserId");
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("TicketPrioritiesId");
+                    b.HasIndex("TicketPriorityId");
 
-                    b.HasIndex("TicketStatusesId");
+                    b.HasIndex("TicketStatusId");
 
-                    b.HasIndex("TicketTypesId");
+                    b.HasIndex("TicketTypeId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("tickets");
                 });
@@ -565,141 +524,149 @@ namespace BugTracker.Data.Migrations
             modelBuilder.Entity("BugTracker.Models.ProjectUsers", b =>
                 {
                     b.HasOne("BugTracker.Models.Project", "project")
-                        .WithMany("ProjectUsers")
+                        .WithMany("ProjectUser")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.Users", "Users")
+                    b.HasOne("BugTracker.Models.Users", "User")
                         .WithMany("ProjectUsers")
-                        .HasForeignKey("UsersId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
 
                     b.Navigation("project");
                 });
 
             modelBuilder.Entity("BugTracker.Models.TicketAttachments", b =>
                 {
-                    b.HasOne("BugTracker.Models.Tickets", "tickets")
+                    b.HasOne("BugTracker.Models.Tickets", "Ticket")
                         .WithMany("TicketAttachments")
-                        .HasForeignKey("ticketsId")
+                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.Users", "users")
+                    b.HasOne("BugTracker.Models.Users", "User")
                         .WithMany("TicketAttachments")
-                        .HasForeignKey("usersId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("tickets");
+                    b.Navigation("Ticket");
 
-                    b.Navigation("users");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BugTracker.Models.TicketComments", b =>
                 {
-                    b.HasOne("BugTracker.Models.Tickets", "tickets")
+                    b.HasOne("BugTracker.Models.Tickets", "ticket")
                         .WithMany("TicketComments")
-                        .HasForeignKey("ticketsId")
+                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.Users", "users")
+                    b.HasOne("BugTracker.Models.Users", "user")
                         .WithMany("TicketComments")
-                        .HasForeignKey("usersId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("tickets");
+                    b.Navigation("ticket");
 
-                    b.Navigation("users");
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("BugTracker.Models.TicketHistories", b =>
                 {
-                    b.HasOne("BugTracker.Models.Users", "Users")
+                    b.HasOne("BugTracker.Models.Tickets", "ticket")
                         .WithMany("TicketHistories")
-                        .HasForeignKey("UsersId");
-
-                    b.HasOne("BugTracker.Models.Tickets", "tickets")
-                        .WithMany("TicketHistories")
-                        .HasForeignKey("ticketsId")
+                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Users");
+                    b.HasOne("BugTracker.Models.Users", "User")
+                        .WithMany("TicketHistories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("tickets");
+                    b.Navigation("User");
+
+                    b.Navigation("ticket");
                 });
 
             modelBuilder.Entity("BugTracker.Models.TicketNotifications", b =>
                 {
-                    b.HasOne("BugTracker.Models.Users", "Users")
+                    b.HasOne("BugTracker.Models.Tickets", "ticket")
                         .WithMany("TicketNotifications")
-                        .HasForeignKey("UsersId");
-
-                    b.HasOne("BugTracker.Models.Tickets", "tickets")
-                        .WithMany("TicketNotifications")
-                        .HasForeignKey("ticketsId")
+                        .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Users");
+                    b.HasOne("BugTracker.Models.Users", "User")
+                        .WithMany("TicketNotifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("tickets");
+                    b.Navigation("User");
+
+                    b.Navigation("ticket");
                 });
 
             modelBuilder.Entity("BugTracker.Models.Tickets", b =>
                 {
-                    b.HasOne("BugTracker.Models.Users", "AssignedToUsers")
+                    b.HasOne("BugTracker.Models.Users", "AssignedToUser")
                         .WithMany("AssignedTickets")
-                        .HasForeignKey("AssignedToUsersId");
+                        .HasForeignKey("AssignedToUserId");
 
                     b.HasOne("BugTracker.Models.Users", "OwnerUser")
                         .WithMany("OwnedTickets")
-                        .HasForeignKey("OwnerUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OwnerUserId");
 
                     b.HasOne("BugTracker.Models.Project", "Project")
-                        .WithMany("Tickets")
+                        .WithMany("Ticket")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.TicketPriorities", "TicketPriorities")
-                        .WithMany("Tickets")
-                        .HasForeignKey("TicketPrioritiesId")
+                    b.HasOne("BugTracker.Models.TicketPriorities", "TicketPriority")
+                        .WithMany("Ticket")
+                        .HasForeignKey("TicketPriorityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.TicketStatuses", "TicketStatuses")
-                        .WithMany("Tickets")
-                        .HasForeignKey("TicketStatusesId")
+                    b.HasOne("BugTracker.Models.TicketStatuses", "TicketStatus")
+                        .WithMany("Ticket")
+                        .HasForeignKey("TicketStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.TicketTypes", "TicketTypes")
-                        .WithMany("Tickets")
-                        .HasForeignKey("TicketTypesId")
+                    b.HasOne("BugTracker.Models.TicketTypes", "TicketType")
+                        .WithMany("Ticket")
+                        .HasForeignKey("TicketTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BugTracker.Models.Users", "Users")
+                    b.HasOne("BugTracker.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UsersId");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("AssignedToUsers");
+                    b.Navigation("AssignedToUser");
 
                     b.Navigation("OwnerUser");
 
                     b.Navigation("Project");
 
-                    b.Navigation("TicketPriorities");
+                    b.Navigation("TicketPriority");
 
-                    b.Navigation("TicketStatuses");
+                    b.Navigation("TicketStatus");
 
-                    b.Navigation("TicketTypes");
+                    b.Navigation("TicketType");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -755,14 +722,14 @@ namespace BugTracker.Data.Migrations
 
             modelBuilder.Entity("BugTracker.Models.Project", b =>
                 {
-                    b.Navigation("ProjectUsers");
+                    b.Navigation("ProjectUser");
 
-                    b.Navigation("Tickets");
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("BugTracker.Models.TicketPriorities", b =>
                 {
-                    b.Navigation("Tickets");
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("BugTracker.Models.Tickets", b =>
@@ -778,12 +745,12 @@ namespace BugTracker.Data.Migrations
 
             modelBuilder.Entity("BugTracker.Models.TicketStatuses", b =>
                 {
-                    b.Navigation("Tickets");
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("BugTracker.Models.TicketTypes", b =>
                 {
-                    b.Navigation("Tickets");
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("BugTracker.Models.Users", b =>

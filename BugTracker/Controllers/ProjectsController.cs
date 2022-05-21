@@ -15,11 +15,14 @@ namespace BugTracker.Controllers
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private ProjectBusinessLogic projectBL;        
+        private ProjectBusinessLogic projectBL;
 
-        public ProjectsController(IGenricRepository<Project> repoArg)
+
+
+        public ProjectsController(IGenricRepository<Project> repoArg, ApplicationDbContext context)
         {
-            projectBL = new ProjectBusinessLogic(repoArg);            
+            projectBL = new ProjectBusinessLogic(repoArg);
+            _context = context;
         }
 
         // GET: Projects

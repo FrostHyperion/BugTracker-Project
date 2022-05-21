@@ -7,14 +7,14 @@ namespace BugTracker.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Tickets> Ticket { get; set; }
 
-        public virtual ICollection<ProjectUsers> ProjectUsers { get; set; }
+        public virtual ICollection<ProjectUsers> ProjectUser { get; set; }
 
         public Project()
         {
-            Tickets = new HashSet<Tickets>();
-            ProjectUsers = new HashSet<ProjectUsers>();
+            Ticket = new HashSet<Tickets>();
+            ProjectUser = new HashSet<ProjectUsers>();
         }
     }
 }

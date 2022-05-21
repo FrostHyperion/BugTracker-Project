@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
         public int TicketId { get; set; }
-        public virtual Tickets tickets { get; set; }
+        public virtual Tickets ticket { get; set; }
         public string UserId { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Users User { get; set; }
     }
 }

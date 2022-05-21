@@ -6,7 +6,7 @@
         public TicketStatus Name { get; set; }
         public TicketStatuses()
         {
-            Tickets = new HashSet<Tickets>();
+            Ticket = new HashSet<Tickets>();
         }
 
 
@@ -17,7 +17,7 @@
             InProgress,
             Completed
         }
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Tickets> Ticket { get; set; }
 
     }
 

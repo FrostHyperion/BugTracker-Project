@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
         public TicketTypeCheck Name { get; set; }
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Tickets> Ticket { get; set; }
         public TicketTypes()
         {
-            Tickets = new HashSet<Tickets>();
+            Ticket = new HashSet<Tickets>();
         }
 
         public enum TicketTypeCheck

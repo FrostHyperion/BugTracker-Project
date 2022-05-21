@@ -13,7 +13,7 @@ namespace BugTracker.Models
         [InverseProperty("OwnerUser")]
         public virtual ICollection<Tickets> OwnedTickets { get; set; }
 
-        [InverseProperty("AssignedToUsers")]
+        [InverseProperty("AssignedToUser")]
         public virtual ICollection<Tickets> AssignedTickets { get; set; }
 
         public Users()

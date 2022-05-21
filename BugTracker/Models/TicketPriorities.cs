@@ -13,9 +13,9 @@
         }
         public TicketPriorities()
         {
-            Tickets = new HashSet<Tickets>();
+            Ticket = new HashSet<Tickets>();
         }
-        public virtual ICollection<Tickets> Tickets { get; set; }
+        public virtual ICollection<Tickets> Ticket { get; set; }
 
 
     }

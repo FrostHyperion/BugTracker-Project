@@ -14,8 +14,8 @@ namespace BugTracker.Models
         public string UserId { get; set; }
         [Required]
         public string FileUrl { get; set; }
-        public virtual Tickets tickets { get; set; }
-        public virtual Users users { get; set; }
+        public virtual Tickets Ticket { get; set; }
+        public virtual Users User { get; set; }
 
         public TicketAttachments()
         {
