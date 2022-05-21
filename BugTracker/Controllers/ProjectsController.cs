@@ -21,7 +21,7 @@ namespace BugTracker.Controllers
 
         public ProjectsController(IGenricRepository<Project> repoArg, ApplicationDbContext context)
         {
-            projectBL = new ProjectBusinessLogic(repoArg);
+            // projectBL = new ProjectBusinessLogic(repoArg);
             _context = context;
         }
 
