@@ -8,6 +8,11 @@ public class ProjectUsersRepository : IGenricRepository<ProjectUsers>
 {
     private readonly ApplicationDbContext _context; //
 
+    public ProjectUsersRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public void Create(ProjectUsers? entity)
     {
         if (entity != null) _context.Projectsusers.Add(entity);

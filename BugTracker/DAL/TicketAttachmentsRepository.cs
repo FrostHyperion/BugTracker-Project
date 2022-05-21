@@ -8,7 +8,12 @@ namespace BugTracker.DAL;
     {
         private readonly ApplicationDbContext _context; //
 
-        public void Create(TicketAttachments? entity)
+    public TicketAttachmentsRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public void Create(TicketAttachments? entity)
         {
         if (entity != null) _context.Ticketattachments.Add(entity);
             

@@ -2,9 +2,15 @@ using BugTracker.Data;
 using BugTracker.Models;
 
 namespace BugTracker.DAL;
-public class TIcketsRepository : IGenricRepository<Tickets>
+public class TicketsRepository : IGenricRepository<Tickets>
 {
     private readonly ApplicationDbContext _context;
+
+    public TicketsRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public void Create(Tickets? entity)
     {
         if(entity!=null)_context.tickets.Add(entity);

@@ -7,6 +7,11 @@ public class TicketCommentsRepository : IGenricRepository<TicketComments>
 {
     private readonly ApplicationDbContext _context; //
 
+    public TicketCommentsRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public void Create(TicketComments? entity)
     {
         if (entity != null) _context.ticketcomments.Add(entity);

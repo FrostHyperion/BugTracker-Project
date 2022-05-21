@@ -6,6 +6,11 @@ namespace BugTracker.DAL;
 {
     private readonly ApplicationDbContext _context; //
 
+    public TicketHistoriesRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public void Create(TicketHistories? entity)
     {
         if(entity != null) _context.tickethistories.Add(entity);

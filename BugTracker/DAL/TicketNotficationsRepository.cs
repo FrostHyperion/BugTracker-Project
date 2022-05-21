@@ -6,7 +6,11 @@ public class TicketNotificationsRepository : IGenricRepository<TicketNotificatio
 {
     private readonly ApplicationDbContext _context;
 
-   
+    public TicketNotificationsRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     public void Create(TicketNotifications? entity)
     {
        if(entity != null) _context.ticketnotifications.Add(entity);
