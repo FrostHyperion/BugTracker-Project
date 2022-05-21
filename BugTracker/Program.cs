@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-<<<<<<< Updated upstream
+// <<<<<<< Updated upstream
 builder.Services.AddScoped<IGenricRepository<Users>, UsersRepository>();
-=======
+// =======
 builder.Services.AddScoped<IGenricRepository<Project>, ProjectRepository>();
 
-// Add services to the container.
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
+// Add services to the container.  
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
