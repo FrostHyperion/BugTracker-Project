@@ -2,7 +2,7 @@
 
 namespace BugTracker.Models
 {
-    public class Tickets
+    public abstract class Tickets
     {
         public int Id { get; set; }
         [Required]
@@ -27,13 +27,22 @@ namespace BugTracker.Models
         public virtual Users? OwnerUser { get; set; }
         public virtual Users? Users { get; set; }
         public virtual Users? AssignedToUsers { get; set; }
-        
+        public DeadlineStrategy DeadlineStrategy { get; set; }  
+        public int Deadline { get; set; }
+        public enum Priority
+        {
+            High,
+            Moderate,
+            Low,
+        }
+        public Priority priority { get; set; }
+
 
         public virtual ICollection<TicketNotifications> TicketNotifications { get; set; }
         public virtual ICollection<TicketHistories> TicketHistories { get; set; }
         public virtual ICollection<TicketComments> TicketComments { get; set; }
         public virtual ICollection<TicketAttachments> TicketAttachments { get; set; }
-        public Tickets()
+        public Tickets(DeadlineStrategy deadlineStrategy, Priority priority)
         {
             TicketNotifications = new List<TicketNotifications>();
             TicketHistories = new List<TicketHistories>();
@@ -41,7 +50,31 @@ namespace BugTracker.Models
             TicketAttachments = new List<TicketAttachments>();
             Created = DateTime.Now;
             Updated = Created;
+            DeadlineStrategy = deadlineStrategy;
+            this.priority = priority;
+            if(priority == Priority.High)
+            {
+                Deadline = 24;
+            }
+            if(priority == Priority.Low)
+            {
+                Deadline = 72;
+            }
+            if(priority != Priority.Moderate)
+            {
+                Deadline = 48;
+            }
         }
+        public void SetDeadlineStrategy(DeadlineStrategy deadlineStrategy)
+        {
+            DeadlineStrategy = deadlineStrategy;
+        }
+        public abstract int GetDeadline();
+        public string GetStrategy()
+        {
+            return DeadlineStrategy.GetDeadlineStrategy();
+        }
+        
     }
 
 
